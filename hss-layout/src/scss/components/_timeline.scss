@@ -61,6 +61,8 @@
 }
 
 .hss-timeline__point {
+    position: relative;
+    z-index: 1;
     padding: 5px 0;
     color: var(--hss-light);
     opacity: 0.6;
