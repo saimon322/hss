@@ -96,7 +96,12 @@
     height: 2px;
     display: block;
     background-color: var(--hss-light);
-    transition: top .25s;
+    opacity: 0;
+    transition: .5s;
+
+    &.hss-active {
+        opacity: 1;
+    }
 }
 
 .hss-timeline__button {

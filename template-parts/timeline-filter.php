@@ -11,13 +11,14 @@
                 <?= $decade?>
             </button>
         <?php endforeach;?>
+        <div class="hss-timeline__pointer"></div>
         <button class="hss-timeline__button" data-open="#hss-filter">
             <span class="hss-timeline__button-text">
                 <?= get_field('filter_btn'); ?>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><circle cx="25" cy="25" r="25" fill="#fff"/><path fill="none" stroke="#0081c8" stroke-width="2" d="M11 17h28"/><path fill="none" stroke="#0081c8" stroke-width="2" d="M11 25h28"/><path fill="none" stroke="#0081c8" stroke-width="2" d="M11 33h28"/><g class="settings-g-1" fill="#fff" stroke="#0081c8" stroke-width="2"><circle cx="5" cy="5" r="5" stroke="none"/><circle cx="5" cy="5" r="4" fill="none"/></g><g class="settings-g-2" fill="#fff" stroke="#0081c8" stroke-width="2"><circle cx="5" cy="5" r="5" stroke="none"/><circle cx="5" cy="5" r="4" fill="none"/></g></svg>
         </button>
-        <div class="hss-filter hss-timeline__filter" id="hss-filter">
+        <div class="hss-filter hss-timeline__filter" id="hss-filter" data-click-outside>
             <div class="hss-filter__wrapper">
             <button class="hss-filter__close-button" data-close="#hss-filter" data-close-delay="1500" data-close-styles="animation: close-filter 1.5s ease-in-out forwards;">
                     <svg>

@@ -6,9 +6,11 @@ $(() => {
     const anchors = document.querySelectorAll('[data-anchor]');
     const allSections = document.querySelectorAll('.section');
     const sections = document.querySelectorAll('.section-cat');
+    const timelinePointer = document.querySelector('.hss-timeline__pointer');
     const startSectionsNum = allSections.length - sections.length;
     const slidesCount = sections.length;
     const timelineClass = 'timeline-show';
+    const activeClass = 'hss-active';
     let activeSlide;
 
     const slideArrows = document.querySelectorAll('[data-slide-arrow]');
@@ -33,6 +35,7 @@ $(() => {
 
             if (destination.index < startSectionsNum) {
                 document.body.classList.remove(timelineClass);
+                timelinePointer.classList.remove(activeClass);
             }
             
             const oldAnchors = document.querySelectorAll('.filter-btn.hss-active');
@@ -42,14 +45,17 @@ $(() => {
                 const oldDecade = oldAnchors[0].dataset.anchor;
                 if (oldDecade != newDecade) {
                     oldAnchors.forEach((anchor) => {
-                        anchor.classList.remove('hss-active');
+                        anchor.classList.remove(activeClass);
                     });
                 }
             }
             if (newAnchors.length) {
                 newAnchors.forEach((anchor) => {
-                    anchor.classList.add('hss-active');
+                    anchor.classList.add(activeClass);
                 });
+                const anchorPos = newAnchors[0].offsetTop + newAnchors[0].offsetHeight;
+                timelinePointer.classList.add(activeClass);
+                timelinePointer.style.top = `${anchorPos}px`;
             }
 
             activeSlide = $(destination.item);
@@ -99,12 +105,12 @@ $(() => {
                 mobileFiltersHide();
             });
         });
-    anchors[0].classList.add('hss-active');
+    anchors[0].classList.add(activeClass);
 
     // CATEGORIES FILTERS
     var filters = $('.hss-filter__input');
     filters.on('change', function() {
-        $('.hss-listbox__item').removeClass('hss-active');
+        $('.hss-listbox__item').removeClass(activeClass);
         if (!$('.hss-filter__input:checked').length) {
             resetFilters();
         } else {
@@ -115,7 +121,7 @@ $(() => {
                 let checked = filter.is(':checked');
                 if (checked) {
                     filtersClasses += `.cat-${term}`;
-                    filter.parent('.hss-listbox__item').addClass('hss-active');
+                    filter.parent('.hss-listbox__item').addClass(activeClass);
                 }
             })
 
@@ -155,7 +161,7 @@ $(() => {
     });
 
     function resetFilters() {
-        $('.hss-listbox__item').removeClass('hss-active');
+        $('.hss-listbox__item').removeClass(activeClass);
         $('.hss-filter__input').each(function( index ) {
             $(this).prop('checked', false );
         });
