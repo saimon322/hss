@@ -1,0 +1,237 @@
+.hss-filter {
+    width: 320px;
+    padding: 30px 0;
+    position: absolute;
+    background-color: var(--hss-light);
+    animation: open-filter 0.5s ease-in-out forwards;
+    color: var(--hss-main-2);
+    overflow: hidden;
+    display: none;
+    
+    &.opened {
+        display: block;
+    }
+
+    .hss-reset-button {
+        position: absolute;
+        bottom: 20px;
+        right: 15px;
+        color: inherit;
+        border-bottom: 1px solid var(--hss-main-2);
+        transition: .25s;
+
+        &:hover {
+            border-color: transparent;
+            color: var(--hss-main);
+        }
+    }
+}
+
+.hss-filter__wrapper {
+    width: 200px;
+}
+
+.hss-filter__close-button {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    color: inherit;
+    transition: transform 1s;
+}
+
+.hss-filter__close-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.hss-filter__title {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.hss-filter__input--custom {
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--hss-main-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.hss-filter__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.hss-filter__category {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: color .25s;
+
+    &:hover {
+        color: var(--hss-main);
+    }
+}
+
+.hss-filter__category:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.hss-filter__category-title {
+    font-size: 14px;
+}
+
+.hss-filter__input:checked+.hss-filter__input--custom::after {
+    content: "";
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    background-color: var(--hss-main-2);
+    display: block;
+}
+
+/* Mobile filter */
+.hss-filter-mob {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 101;
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: .25s;
+
+    .timeline-show & {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @include media-up(lg) {
+        display: none !important;
+    }
+
+    &__list {
+        display: flex;
+    }
+
+    &__item {
+        display: flex;
+        width: 50%;
+    }
+
+    &__button {
+        width: 100%;
+        padding: 17px;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1.5;
+        color: #fff;
+        background-color: var(--hss-main-2);
+        border: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+        .filter__item:last-child & {
+            border-right: none;
+        }
+    }
+}
+
+
+.hss-filter-mob-dropdown {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    flex-direction: column;
+    background-color: #fff;
+    transform: translateY(100%);
+    transition: .5s;
+
+    &.opened {
+        transform: translateY(0);
+    }
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        color: var(--hss-light);
+        background-color: var(--hss-main-2);
+    }
+
+    &__title {
+        font-size: 12px;
+        margin-right: 15px;
+    }
+
+    &__close {
+        flex-shrink: 0;
+        margin-left: auto;
+        padding: 0;
+        border: none;
+        color: #fff;
+    }
+
+    &__listbox {
+        flex-grow: 1;
+        // max-height: calc((var(--vh, 1vh) * 100) - var(--filter-dropdown-head-height));
+        max-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .hss-filter__input--custom {
+        display: none;
+    }
+}
+
+.hss-listbox {
+    &__item {
+        display: block;
+        padding: 20px 0px;
+        font-size: 12px;
+        color: var(--hss-main-2);
+        font-family: var(--second-font);
+        font-weight: 900;
+        line-height: 1.33;
+        text-align: center;
+        border-bottom: solid 0.5px #000000;
+
+        &.hss-active {
+            background: rgba(0, 129, 200, 0.7);
+            color: #fff;
+            border-color: #fff;
+
+            span {
+                color: #fff;
+            }
+        }
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &__item-amount {
+        font-weight: 500;
+        color: var(--hss-dark);
+    }
+}

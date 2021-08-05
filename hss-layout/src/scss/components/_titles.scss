@@ -1,0 +1,22 @@
+.hss-title--h1 {
+  margin-left: -10px;
+  font-size: 6vh;
+  line-height: 0.74;
+  letter-spacing: -2.2px;
+
+  @include media-up(lg) {
+    font-size: 8vh;
+    letter-spacing: 0.6px;
+  }
+}
+
+.hss-title--h2 {
+  font-size: 17px;
+  line-height: 1.06;
+  font-weight: normal;
+
+  @include media-up(md) {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}

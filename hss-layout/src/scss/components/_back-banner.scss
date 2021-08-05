@@ -1,0 +1,17 @@
+.hss-back-banner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  height: 100%;
+}
+
+.hss-back-banner__img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}

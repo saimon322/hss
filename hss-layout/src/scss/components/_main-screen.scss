@@ -1,0 +1,55 @@
+.hss-main-screen__title {
+    text-transform: uppercase;
+}
+
+.hss-logo {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    width: 50px;
+    height: 50px;
+    transform: translateX(-50%);
+    z-index: 20;
+
+    @include media-up(lg) {
+        top: 50px;
+        width: 85px;
+        height: 85px;
+    }
+
+    &:hover,
+    &:active {
+        img {
+            transform: scale(1.2);
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.2s ease-in-out;
+    }
+}
+
+.hss-main-screen__text {
+    margin-top: 15px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.57;
+
+    @include media-up(sm) {
+        font-size: 16px;
+    }
+
+    @include media-up(md) {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+}
+
+.hss-main-screen__subtitle {
+    margin-bottom: 30px;
+}

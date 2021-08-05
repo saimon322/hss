@@ -1,0 +1,31 @@
+$grid-breakpoints: (
+  xs: 360px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1140px,
+  xxl: 1200px,
+  xxxl: 1300px,
+  xxxxl: 1400px,
+);
+
+:root {
+  // font
+  --main-font: 'FreightSans Pro', sans-serif;
+  --second-font: 'BentonSans', sans-serif;
+
+  // default colors
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #989898;
+  --blue: #2a4fa3;
+  --blue-light: #0081c8;
+  --blue-dark: #101f40;
+
+  --hss-light: var(--white);
+  --hss-dark: var(--black);
+  --hss-gray: var(--gray);
+  --hss-main: var(--blue);
+  --hss-main-2: var(--blue-light);
+  --hss-main-3: var(--blue-dark);
+}
