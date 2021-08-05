@@ -157,6 +157,13 @@
     bottom: 0;
     left: 50%;
     z-index: -1;
+    opacity: 0;
+    transition: .25s;
+
+    .timeline-show & {
+        transform: translateX(0);
+        opacity: 1;
+    }
 
     &.closing .hss-filter__close-button {
         transform: rotate(-180deg);
