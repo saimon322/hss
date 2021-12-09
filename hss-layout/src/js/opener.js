@@ -83,6 +83,7 @@ const listenClosing = (closingElements) => {
             );
 
         closingElement.addEventListener('click', async () => {
+            fullpage_api.setAllowScrolling(true);
             if (closeStyles) {
                 targeElements.forEach((targeElement) => {
                     targeElement.setAttribute('style', closeStyles);
@@ -97,7 +98,6 @@ const listenClosing = (closingElements) => {
             }
 
             removeOpenedClass();
-            fullpage_api.setAllowScrolling(true);
         });
     });
 };

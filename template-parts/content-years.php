@@ -46,7 +46,7 @@ $str_len = 300;
                 <?= get_field('description', $post->ID)?>
             </div>
             <?php if($read_more): ?>
-                <button class="hss-screen-read-more" data-open="#slide-<?= $year?>-info">
+                <button class="hss-screen-read-more" data-open="#slide-<?= $post->ID?>-info">
                     READ MORE
                 </button>
             <?php endif;?>
@@ -57,8 +57,8 @@ $str_len = 300;
             </svg>
         </button>
         <?php if($read_more): ?>
-            <div class="hss-info-screen" data-click-outside data-info-screen id="slide-<?= $year?>-info">
-                <button class="hss-info-screen__button" data-close="#slide-<?= $year?>-info" data-close-delay="1500" data-close-styles="animation: from-left 1.5s ease-in-out forwards;">
+            <div class="hss-info-screen" data-click-outside data-info-screen id="slide-<?= $post->ID?>-info">
+                <button class="hss-info-screen__button" data-close="#slide-<?= $post->ID?>-info" data-close-delay="1500" data-close-styles="animation: from-left 1.5s ease-in-out forwards;">
                     <svg>
                         <use xlink:href='#close'></use>
                     </svg>

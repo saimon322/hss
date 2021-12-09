@@ -1,39 +1,39 @@
 @font-face {
   font-display: swap;
   font-style: normal;
+  font-weight: 400;
+  font-family: 'BentonSans';
+  src: url('fonts/BentonSansRegular.woff2') format('woff2'),
+    url('fonts/BentonSansRegular.ttf') format('ttf'),
+    url('fonts/BentonSansRegular.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-style: normal;
   font-weight: 500;
-  font-family: 'FreightSans Pro';
-  src: url('fonts/FreightSansProMedium.woff2') format('woff2'),
-    url('fonts/FreightSansProMedium.ttf') format('ttf'),
-    url('fonts/FreightSansProMedium.woff') format('woff');
+  font-family: 'BentonSans';
+  src: url('fonts/BentonSansMedium.woff2') format('woff2'),
+    url('fonts/BentonSansMedium.ttf') format('ttf'),
+    url('fonts/BentonSansMedium.woff') format('woff');
 }
 
 @font-face {
   font-display: swap;
   font-style: normal;
   font-weight: 700;
-  font-family: 'FreightSans Pro';
-  src: url('fonts/FreightSansProBlack.woff2') format('woff2'),
-    url('fonts/FreightSansProBlack.ttf') format('ttf'),
-    url('fonts/FreightSansProBlack.woff') format('woff');
+  font-family: 'BentonSans';
+  src: url('fonts/BentonSansBold.woff2') format('woff2'),
+    url('fonts/BentonSansBold.ttf') format('ttf'),
+    url('fonts/BentonSansBold.woff') format('woff');
 }
 
 @font-face {
   font-display: swap;
   font-style: normal;
   font-weight: 900;
-  font-family: 'FreightSans Pro';
-  src: url('fonts/FreightSansProUltraBlack.woff2') format('woff2'),
-    url('fonts/FreightSansProUltraBlack.ttf') format('ttf'),
-    url('fonts/FreightSansProUltraBlack.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-style: normal;
-  font-weight: 400;
   font-family: 'BentonSans';
-  src: url('fonts/BentonSansRegular.woff2') format('woff2'),
-    url('fonts/BentonSansRegular.ttf') format('ttf'),
-    url('fonts/BentonSansRegular.woff') format('woff');
+  src: url('fonts/BentonSansBlack.woff2') format('woff2'),
+    url('fonts/BentonSansBlack.ttf') format('ttf'),
+    url('fonts/BentonSansBlack.woff') format('woff');
 }

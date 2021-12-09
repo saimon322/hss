@@ -16,9 +16,9 @@
             <h1 class="hss-title--h1 hss-main-screen__title">
                 <?= get_field('title')?>
             </h1>
-            <p class="hss-main-screen__text">
+            <div class="hss-screen-text">
                 <?= get_field('sub-title')?>
-            </p>
+            </div>
         </div>
         <button class="hss-slide-arrow" data-slide-arrow>
             <svg width='38px' height='20px'>

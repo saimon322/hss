@@ -3,16 +3,13 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1140px,
-  xxl: 1200px,
-  xxxl: 1300px,
-  xxxxl: 1400px,
+  xl: 1200px,
+  xxl: 1500px,
 );
 
 :root {
   // font
-  --main-font: 'FreightSans Pro', sans-serif;
-  --second-font: 'BentonSans', sans-serif;
+  --main-font: 'BentonSans', sans-serif;
 
   // default colors
   --white: #ffffff;

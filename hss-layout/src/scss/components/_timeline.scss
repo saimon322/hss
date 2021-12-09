@@ -25,13 +25,13 @@
     color: var(--hss-light);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 30px 0 10px;
+    padding: 20px 0 80px;
     position: relative;
     top: 10vh;
 
-    @include media-up(xxl) {
+    @include media-up(xl) {
         width: 70px;
         left: 45px;
     }
@@ -107,7 +107,10 @@
 }
 
 .hss-timeline__button {
-    position: relative;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -150,7 +153,7 @@
     left: -30px;
     top: 40%;
 
-    @include media-up(xxl) {
+    @include media-up(xl) {
         left: -40px;
     }
 }

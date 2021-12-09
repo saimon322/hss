@@ -12,7 +12,7 @@
 
         if(!empty($years)){
             foreach ($years as $i=>$year){
-                    get_template_part('template-parts/content', 'years',  [ 'count' => count($years), 'current' => $i + 1, 'post' => $year]);
+                get_template_part('template-parts/content', 'years',  [ 'count' => count($years), 'current' => $i + 1, 'post' => $year]);
             }
             wp_reset_postdata();
         }?>
