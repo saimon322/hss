@@ -11,6 +11,7 @@ $(() => {
     const slidesCount = sections.length;
     const timelineClass = 'timeline-show';
     const activeClass = 'hss-active';
+    let filteredCount = slidesCount;
     let activeSlide;
 
     const slideArrows = document.querySelectorAll('[data-slide-arrow]');
@@ -31,43 +32,47 @@ $(() => {
     new fullpage('#fullpage', {
         licenseKey: '28B27742-9C0644F4-853CD239-DCF3F188',
         onLeave: (origin, destination, direction) => {
-            skipPages(origin, destination, direction);
+            timelinePointer.classList.remove(activeClass);
+            anchors.forEach((anchor) => {
+                anchor.classList.remove(activeClass);
+            });
 
-            if (destination.index < startSectionsNum) {
-                document.body.classList.remove(timelineClass);
-                timelinePointer.classList.remove(activeClass);
-            }
-            
-            const oldAnchors = document.querySelectorAll('.filter-btn.hss-active');
-            const newDecade = destination.item.dataset.decade;
-            const newAnchors = document.querySelectorAll(`[data-anchor="${newDecade}"]`);
-            if (oldAnchors.length) {
-                const oldDecade = oldAnchors[0].dataset.anchor;
-                if (oldDecade != newDecade) {
-                    oldAnchors.forEach((anchor) => {
-                        anchor.classList.remove(activeClass);
-                    });
+            if (filteredCount != 0) {
+                skipPages(origin, destination, direction);
+                if (destination.index < startSectionsNum) {
+                    document.body.classList.remove(timelineClass);
+                } else {
+                    document.body.classList.add(timelineClass);
+                    const newDecade = destination.item.dataset.decade;
+                    const newAnchors = document.querySelectorAll(`[data-anchor="${newDecade}"]`);
+                    if (newAnchors.length) {
+                        newAnchors.forEach((anchor) => {
+                            anchor.classList.add(activeClass);
+                        });
+                        const anchorPos = newAnchors[0].offsetTop + newAnchors[0].offsetHeight;
+                        timelinePointer.classList.add(activeClass);
+                        timelinePointer.style.top = `${anchorPos}px`;
+                    }
                 }
-            }
-            if (newAnchors.length) {
-                newAnchors.forEach((anchor) => {
-                    anchor.classList.add(activeClass);
-                });
-                const anchorPos = newAnchors[0].offsetTop + newAnchors[0].offsetHeight;
-                timelinePointer.classList.add(activeClass);
-                timelinePointer.style.top = `${anchorPos}px`;
+            } else {
+                if (origin.index == 1) {
+                    fullpage_api.setAllowScrolling(true, 'down');
+                    document.body.classList.remove(timelineClass);
+                } else {
+                    fullpage_api.setAllowScrolling(false, 'down');
+                    document.body.classList.add(timelineClass);
+                }
             }
 
             activeSlide = $(destination.item);
         },
         afterLoad: (origin, destination, direction) => {
-            if (destination.index >= startSectionsNum) {
-                document.body.classList.add(timelineClass);
-            }
-            if(destination.item.classList.contains('section--last')){
-                fullpage_api.setAllowScrolling(false, 'down');
-            } else {
-                fullpage_api.setAllowScrolling(true, 'down');
+            if (filteredCount != 0) {
+                if(destination.item.classList.contains('section--last')){
+                    fullpage_api.setAllowScrolling(false, 'down');
+                } else {
+                    fullpage_api.setAllowScrolling(true, 'down');
+                }
             }
         },
     });
@@ -105,7 +110,6 @@ $(() => {
                 mobileFiltersHide();
             });
         });
-    anchors[0].classList.add(activeClass);
 
     // CATEGORIES FILTERS
     var filters = $('.hss-filter__input');
@@ -114,24 +118,30 @@ $(() => {
         if (!$('.hss-filter__input:checked').length) {
             resetFilters();
         } else {
-            let filtersClasses = '';
+            let filtersClasses = [];
             filters.each(function() {
                 let filter = $(this);
                 let term = filter.val();
                 let checked = filter.is(':checked');
                 if (checked) {
-                    filtersClasses += `.cat-${term}`;
+                    filtersClasses.push(`.cat-${term}`);
                     filter.parent('.hss-listbox__item').addClass(activeClass);
                 }
             })
 
             $('.filter-btn').addClass('hidden');
             $('.section-cat').removeClass('filtered section--last').addClass('hidden');
-            $(`.section-cat${filtersClasses}`).each(function(){
-                let section = $(this);
-                section.addClass('filtered').removeClass('hidden');
-                let decade = section.data('decade');
-                $(`.filter-btn[data-anchor='${decade}']`).removeClass('hidden');
+
+            filteredCount = 0;
+            $.each(filtersClasses, function(index, value){
+                const filteredSections = $(`.section-cat${value}`);
+                filteredCount += filteredSections.length;
+                filteredSections.each(function(){
+                    let section = $(this);
+                    section.addClass('filtered').removeClass('hidden');
+                    let decade = section.data('decade');
+                    $(`.filter-btn[data-anchor='${decade}']`).removeClass('hidden');
+                })
             })
 
             const firstFilteredSlide = $('.section-cat.filtered').first();
@@ -173,6 +183,7 @@ $(() => {
         }
         fullpage_api.setAllowScrolling(true, 'down');
         mobileFiltersHide();
+        filteredCount = slidesCount;
     }
 
     function mobileFiltersHide() {
