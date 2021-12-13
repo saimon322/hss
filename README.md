@@ -1,6 +1,7 @@
-﻿# HSS project
+﻿# HSS
 
 Test site: http://hsswp.one-pix.ru/
+
 Test HTML: http://hsswp.one-pix.ru/wp-content/themes/hss/hss-layout/dist/
 
 ---
