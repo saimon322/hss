@@ -5,10 +5,12 @@ $(() => {
     const topButton = document.querySelector('.hss-timeline__start');
     const anchors = document.querySelectorAll('[data-anchor]');
     const allSections = document.querySelectorAll('.section');
-    const sections = document.querySelectorAll('.section-cat');
+    const introSections = document.querySelectorAll('.section-intro');
+    const slideSections = document.querySelectorAll('.section-cat');
     const timelinePointer = document.querySelector('.hss-timeline__pointer');
-    const startSectionsNum = allSections.length - sections.length;
-    const slidesCount = sections.length;
+    const introsCount = introSections.length;
+    const slidesCount = slideSections.length;
+    const lastIntro = introSections[introsCount - 1];
     const timelineClass = 'timeline-show';
     const activeClass = 'hss-active';
     let filteredCount = slidesCount;
@@ -39,7 +41,7 @@ $(() => {
 
             if (filteredCount != 0) {
                 skipPages(origin, destination, direction);
-                if (destination.index < startSectionsNum) {
+                if (destination.index < introsCount) {
                     document.body.classList.remove(timelineClass);
                 } else {
                     document.body.classList.add(timelineClass);
@@ -55,7 +57,7 @@ $(() => {
                     }
                 }
             } else {
-                if (origin.index == 1) {
+                if (destination.index < introsCount - 1) {
                     fullpage_api.setAllowScrolling(true, 'down');
                     document.body.classList.remove(timelineClass);
                 } else {
@@ -103,10 +105,10 @@ $(() => {
             anchor.addEventListener('click', () => {
                 const neededDecade = anchor.dataset.anchor;
                 const neededSection = document.querySelector(`[data-decade="${neededDecade}"]`);
-                const arraySections = Array.from(sections);
+                const arraySections = Array.from(slideSections);
                 const neededSectionIndex = arraySections.indexOf(neededSection);
 
-                fullpage_api.moveTo(neededSectionIndex + startSectionsNum + 1);
+                fullpage_api.moveTo(neededSectionIndex + introsCount + 1);
                 mobileFiltersHide();
             });
         });
@@ -144,13 +146,19 @@ $(() => {
                 })
             })
 
+            if (filteredCount == 0) {                
+                lastIntro.classList.add('section--last');
+            } else {
+                lastIntro.classList.remove('section--last');
+            }
+
             const firstFilteredSlide = $('.section-cat.filtered').first();
             const lastFilteredSlide = $('.section-cat.filtered').last();
             lastFilteredSlide.addClass('section--last');
 
             const newSlide = firstFilteredSlide.length ? 
-                  firstFilteredSlide.index() + 1 : 
-                  startSectionsNum;
+                firstFilteredSlide.index() + 1 : 
+                introsCount;
             if (activeSlide.hasClass('hidden')) {
                 fullpage_api.moveTo(newSlide);
             }
@@ -179,11 +187,12 @@ $(() => {
             $(this).removeClass('filtered hidden section--last');
         });
         if (activeSlide.hasClass('section-cat')) {
-            fullpage_api.moveTo(startSectionsNum + 1);
+            fullpage_api.moveTo(introsCount + 1);
         }
         fullpage_api.setAllowScrolling(true, 'down');
         mobileFiltersHide();
         filteredCount = slidesCount;
+        lastIntro.classList.remove('section--last');
     }
 
     function mobileFiltersHide() {

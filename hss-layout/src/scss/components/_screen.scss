@@ -95,12 +95,12 @@
     @include media-up(lg) {
         font-size: 4vh;
         margin-top: 0;
-        max-width: 520px;
+        max-width: 550px;
     }
 
     @include media-up(xxl) {
         font-size: 4.3vh;
-        max-width: 550px;
+        max-width: 620px;
     }
 }
 

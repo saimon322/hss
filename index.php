@@ -5,7 +5,8 @@
     <?php get_template_part('template-parts/mobile', 'filters')?>
     
     <div id="fullpage">
-        <?php get_template_part('main', 'page')?>
+        <?php include 'template-parts/main-screen.php' ?>
+        <?php include 'template-parts/intros.php' ?>
 
         <?php $years = get_field('years', 'option');
         $years = get_years();

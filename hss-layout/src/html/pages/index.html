@@ -7,39 +7,12 @@
     <%=_.template(require('../templates/timeline.html'))() %>
     <%=_.template(require('../templates/filters-mobile.html'))() %>
     <div id="fullpage">
-        <div class="section">
-            <%=_.template(require('../templates/main-screen.html'))() %>
-        </div>
-        <div class="section">
-            <%=_.template(require('../templates/introduction.html'))() %>
-        </div>
-        <div class="section section-cat cat-1 cat-2" data-decade="1860">
-            <%=_.template(require('../templates/slide-3.html'))() %>
-        </div>
-        <div class="section section-cat cat-2" data-decade="1880">
-            <%=_.template(require('../templates/slide-4.html'))() %>
-        </div>
-        <div class="section section-cat cat-3" data-decade="1890">
-            <%=_.template(require('../templates/slide-5.html'))() %>
-        </div>
-        <div class="section section-cat cat-4" data-decade="1960">
-            <%=_.template(require('../templates/slide-6.html'))() %>
-        </div>
-        <div class="section section-cat cat-5" data-decade="1970">
-            <%=_.template(require('../templates/slide-7.html'))() %>
-        </div>
-        <div class="section section-cat cat-6" data-decade="1980">
-            <%=_.template(require('../templates/slide-8.html'))() %>
-        </div>
-        <div class="section section-cat cat-1" data-decade="2010">
-            <%=_.template(require('../templates/slide-10.html'))() %>
-        </div>
-        <div class="section section-cat cat-2" data-decade="2010">
-            <%=_.template(require('../templates/slide-9.html'))() %>
-        </div>
-        <div class="section section-cat cat-1" data-decade="2020">
-            <%=_.template(require('../templates/slide-11.html'))() %>
-        </div>
+        <%=_.template(require('../templates/main-screen.html'))() %>
+        <%=_.template(require('../templates/intro-1.html'))() %>
+        <%=_.template(require('../templates/intro-2.html'))() %>
+        <% for (var i = 1; i <= 9; i++) { %>
+            <%=_.template(require('../templates/slide-' + i + '.html'))() %>
+        <% } %>
     </div>
 
 </main>

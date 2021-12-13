@@ -1,67 +1,67 @@
 .hss-slide-arrow {
-    display: none;
-    position: absolute;
-    left: 50%;
-    bottom: 15px;
-    transform: translateX(-50%);
-    background: none;
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+  background: none;
+  font-size: 18px;
+  display: block;
+  color: var(--hss-light);
+  transition: 0.25s;
+
+  @include media-up(lg) {
     font-size: 18px;
+    bottom: 20px;
+  }
+
+  .timeline-show & {
+    @include media-down(md) {
+      transform: translate(-50%, -50px);
+    }
+  }
+
+  &__text {
     display: block;
-    color: var(--hss-light);
-    transition: 0.25s;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.71;
+    margin-bottom: 5px;
+    transition: 0.2s ease-in-out;
 
     @include media-up(lg) {
-        font-size: 18px;
-        bottom: 20px;
+      line-height: normal;
+      margin-bottom: 20px;
     }
 
     .section:last-child &,
     .section--last & {
-        transform: translateX(-50%) rotate(180deg);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &:hover svg {
+    @include media-up(lg) {
+      transform: translateY(10px);
+    }
+  }
+
+  svg {
+    height: 13px;
+    transition: transform 0.2s ease-in-out;
+
+    @include media-up(sm) {
+      height: 15px;
     }
 
-    .timeline-show & {
-        @include media-down(md) {
-            transform: translate(-50%, -50px);
-        }
-    }
-            
-    .timeline-show .section:last-child &,
-    .timeline-show .section--last & {
-        @include media-down(md) {
-            transform: translate(-50%, -50px) rotate(180deg);
-        }
+    @include media-up(md) {
+      height: 20px;
     }
 
-    &:hover svg {
-        @include media-up(lg) {
-            transform: translateY(10px);            
-        }
+    .section:last-child &,
+    .section--last & {
+      transform: rotate(180deg);
     }
-
-    &__text {
-        display: block;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 1.71;
-        margin-bottom: 5px;
-
-        @include media-up(lg) {
-            line-height: normal;
-            margin-bottom: 20px;
-        }
-    }
-
-    svg {
-        height: 13px;
-        transition: transform 0.2s ease-in-out;
-
-        @include media-up(sm) {
-            height: 15px;
-        }
-
-        @include media-up(md) {
-            height: 20px;
-        }
-    }
+  }
 }
